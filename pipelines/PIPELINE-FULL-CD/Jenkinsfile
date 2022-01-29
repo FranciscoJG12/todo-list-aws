@@ -19,6 +19,7 @@ pipeline {
                     git merge develop
                 """, label: "Merging code to master"
                 sshagent(['FranciscoJG12']) {
+                    echo 'Entro a despues de sshagent'
                     sh "git push origin master"
                 }
 
