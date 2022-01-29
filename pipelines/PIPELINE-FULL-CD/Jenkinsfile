@@ -20,6 +20,7 @@ pipeline {
                 """, label: "Merging code to master"
                 sshagent(['github']) {
                     echo 'Entro a despues de sshagent'
+                    sh "git config -l"
                     sh "git push origin master"
                 }
 
