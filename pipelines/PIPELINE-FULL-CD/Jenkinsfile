@@ -20,7 +20,6 @@ pipeline {
                 """, label: "Merging code to master"
                 sshagent(['github']) {
                     sh "git config --global user.name "FranciscoJG12""
-                    sh "git config --global user.email "francisco.jarring@gmail.com""
                     sh "git config -l"
                     sh "git push origin master"
                 }
