@@ -22,7 +22,6 @@ pipeline {
                 sshagent(['github']) {
                     echo 'Entro a despues de sshagent'
                     sh "git remote set-url origin git@github.com/FranciscoJG12/todo-list-aws.git"
-                    sh "git push origin master"
                 }
 
             }
