@@ -2,6 +2,13 @@ pipeline {
     agent any
     stages {
         
+        stage('Staging'){
+            steps{
+                echo 'Starting staging job'
+                build job: 'PIPELINE-FULL-STAGING', parameters: [
+                      string(name:'ENVIRONMENT', value: "staging")]
+            }
+        }
         stage('Merge'){
             steps{
                 sh script: """
@@ -11,11 +18,8 @@ pipeline {
                     git checkout -b master origin/master
                     git merge develop
                 """, label: "Merging code to master"
-                echo 'Justo antes de invocar sshAgent'
-                sshagent(['github']) {
-                    sh "git config --global user.name FranciscoJG12"
-                    sh "git config --global user.email francisco.jarring@gmail.com"
-                    sh "git config -l"
+                sshagent(['FranciscoJG12']) {
+                    echo 'Entro a despues de sshagent'
                     sh "git push origin master"
                 }
 
